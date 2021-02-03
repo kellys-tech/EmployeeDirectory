@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import API from "./utils/API";
+import Container from "./components/Container";
+// import SearchForm from "../components/SearchForm";
+ import SearchResults from "./components/SearchResults";
+// import Alert from "../components/Alert";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    // search: "",
+    breeds: [],
+    // results: [],
+    // error: ""
+  };
+
+  // When the component mounts, get a list of all available base breeds and update this.state.breeds
+  componentDidMount() {
+    API.getRandomUser()
+      .then(res => this.setState({ breeds: res.data.results}))
+      .catch(err => console.log(err));
+  }
+
+  handleInputChange = event => {
+    // this.setState({ search: event.target.value });
+  };
+
+  sortByEmail =()=>{
+    //logic sort (sort fx)
+    //set the breeds state
+  }
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    // API.getDogsOfBreed(this.state.search)
+    //   .then(res => {
+    //     if (res.data.status === "error") {
+    //       throw new Error(res.data.message);
+    //     }
+    //     this.setState({ results: res.data.message, error: "" });
+    //   })
+    //   .catch(err => this.setState({ error: err.message }));
+  };
+  render() {
+    return (
+      <div>
+        <Container style={{ minHeight: "80%" }}>
+           {/*
+          <h1 className="text-center">Search By Breed!</h1>
+          <Alert
+            type="danger"
+            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
+          >
+            {this.state.error}
+          </Alert>
+          <SearchForm
+            handleFormSubmit={this.handleFormSubmit}
+            handleInputChange={this.handleInputChange}
+            breeds={this.state.breeds}
+          />
+          
+          */}
+          <SearchResults results={this.state.breeds} />
+        </Container> 
+      </div>
+    );
+  }
 }
 
 export default App;
