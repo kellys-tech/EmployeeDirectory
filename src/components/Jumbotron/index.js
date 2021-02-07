@@ -1,14 +1,17 @@
 import React from "react";
 
-function Jumbotron() {
-  return (
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Employee Directory</h1>
-        <p class="lead">Click on carrots to filter by heading or use the search box to narrow your results.</p>
+
+function Jumbotron(pros) {
+    return(
+    <div>
+        <div className="jumbotron jumbotron-fluid">
+        <div className="container">
+          <h1 className="display-4">{pros.heading}</h1>
+          <p className="lead">{pros.subHeading}</p>
+        </div>
       </div>
     </div>
-  )
+    );
 }
 
 export default Jumbotron;

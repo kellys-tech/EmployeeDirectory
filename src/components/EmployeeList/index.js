@@ -6,10 +6,10 @@ function EmployeeList(props) {
             <thead className="thead-dark">
                 <tr>
                     <th scope="col">Image</th>
-                    <th scope="col" onClick={() => props.sortName("Name")}>Name <i className={props.icon}></i></th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">DOB</th>
+                    <th scope="col" onClick={() => props.sortFunction("Name")}>Name <i className={props.icon}></i></th>
+                    <th scope="col" onClick={() => props.sortFunction("Phone")}>Phone <i className={props.icon}></i></th>
+                    <th scope="col" onClick={() => props.sortFunction("Email")}>Email <i className={props.icon}></i></th>
+                    <th scope="col" onClick={() => props.sortFunction("DOB")}>DOB <i className={props.icon}></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,7 +19,7 @@ function EmployeeList(props) {
                         <td>{result.name.first + " " + result.name.last}</td>
                         <td>{result.phone}</td>
                         <td>{result.email}</td>
-                        <td>{(result.dob.date)}</td>
+                        <td>{new Intl.DateTimeFormat('en-US', { year: "numeric", month: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(result.dob.date))}</td>
                     </tr>
                 ))}
             </tbody>
